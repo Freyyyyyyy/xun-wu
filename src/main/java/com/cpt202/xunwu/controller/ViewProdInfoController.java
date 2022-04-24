@@ -5,7 +5,10 @@ import com.cpt202.xunwu.bean.ComPage;
 import com.cpt202.xunwu.bean.ComResult;
 import com.cpt202.xunwu.model.Product;
 
+import java.beans.PropertyEditorSupport;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +16,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +31,7 @@ public class ViewProdInfoController {
     
     @GetMapping(value = "cdSearch")
     public ComPage cdSearch(@RequestParam(name = "page", defaultValue = "0") int page,
-                            @RequestParam(name = "size", defaultValue = "6") int size,
+                            @RequestParam(name = "size", defaultValue = "8") int size,
                             @RequestParam(name = "sortC", defaultValue = "0") int sortC,
                             @RequestParam(name = "keyword", required = false) String keyword,                       
                             @RequestParam(name = "prodCategoryId", required = false) Integer prodCategoryId,
@@ -40,6 +45,24 @@ public class ViewProdInfoController {
         Page<Product> CsProdPage = searchProdService.cdSearch(page, size, sortC, keyword, prodCategoryId, dateStart, dateEnd, priceStart, priceEnd, sizeStart, sizeEnd);                        
         ComPage result = new ComPage(page, size, CsProdPage.getTotalPages(), CsProdPage.getTotalElements(), CsProdPage.getContent());
         return result;
+    }
+
+    @InitBinder
+    public void InitBinder(WebDataBinder dataBinder){
+        dataBinder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String value) {
+                try {
+                    setValue(new SimpleDateFormat("yyyy-MM-dd").parse(value));
+                } catch(ParseException e) {
+                    setValue(null);
+                }
+            }
+            @Override
+            public String getAsText() {
+                return new SimpleDateFormat("yyyy-MM-dd").format((Date) getValue());
+            }        
+        });
     }
 
 

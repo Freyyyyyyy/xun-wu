@@ -44,7 +44,7 @@ public class ViewProdInfoService {
                                   Long sizeEnd){
         Sort sort = Sort.by("productId");
         if(sortC == 1){
-            sort = Sort.by("createdDate").descending();
+            sort = Sort.by("creatDate").descending();
         }else if(sortC == 2){
             sort = Sort.by("productSaleVolume").descending();
         }else if(sortC == 3){
@@ -60,7 +60,7 @@ public class ViewProdInfoService {
                     predicates.add(criteriaBuilder.or(criteriaBuilder.like(root.get("productName"), "%\\"+keyword+"%"),
                                                        criteriaBuilder.like(root.get("productDescription"), "%\\"+keyword+"%")));
                 }
-                if(prodCategoryId != null){
+                if(prodCategoryId != null && prodCategoryId != 0){
                     predicates.add(criteriaBuilder.equal(root.get("productCategoryId"), prodCategoryId));
                 }
                 if(dateStart != null && dateEnd != null){

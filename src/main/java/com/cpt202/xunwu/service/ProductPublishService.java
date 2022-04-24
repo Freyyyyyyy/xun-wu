@@ -28,7 +28,8 @@ public class ProductPublishService {
             product.setProductPublishUserId(userId);
             product.setProductPublishUserName(userRepo.findById(userId).get().getUserName());
             
-            Product newProduct = product;
+            Product newProduct = new Product();
+            newProduct = product;
             productRepo.save(newProduct);
 
             result.setCode(200);

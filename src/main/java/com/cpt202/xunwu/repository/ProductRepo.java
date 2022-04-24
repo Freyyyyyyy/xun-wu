@@ -12,4 +12,6 @@ public interface ProductRepo extends JpaRepository<Product, Long>, JpaSpecificat
     
     Product findProductByProductNameAndProductPublishUserId(String prodName, long prodId);
 
+    Product findProductIdByProductId(long productId);
+    
 }

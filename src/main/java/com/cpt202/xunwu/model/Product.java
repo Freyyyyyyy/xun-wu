@@ -4,17 +4,21 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 //import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +48,7 @@ public class Product {
     
     @CreatedDate
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    //@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date creatDate;
 
     //@CreatedBy
