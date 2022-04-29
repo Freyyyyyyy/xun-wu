@@ -41,4 +41,4 @@ Change `url` to `jdbc:mysql://localhost:3306/xunwu` <br>
 Change `username` and `password` to the username and password of your local database account <br>
 ![image](https://user-images.githubusercontent.com/103989093/166080040-c8bc7828-88fa-46a4-891b-7fb1ce0812d4.png)
 #### Initiate
-Run the `main` fuction in `com.cpt202.xunwu.XunWuApplication`
+* Run the `main` fuction in `com.cpt202.xunwu.XunWuApplication`
