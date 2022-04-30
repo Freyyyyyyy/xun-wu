@@ -39,6 +39,11 @@ Front-end project: https://github.com/Freyyyyyyy/xun-wu-front
 * Open `xun-wu/src/main/resources/application.properties` <br>
 Modify `url` to `jdbc:mysql://localhost:3306/xunwu` <br>
 Modify `username` and `password` to the username and password of your local database account <br>
-![image](https://user-images.githubusercontent.com/103989093/166080040-c8bc7828-88fa-46a4-891b-7fb1ce0812d4.png)
+![image](https://user-images.githubusercontent.com/103989093/166080040-c8bc7828-88fa-46a4-891b-7fb1ce0812d4.png) <br>
+```
+spring.datasource.url = jdbc:mysql://localhost:3306/xunwu
+spring.datasource.username = root
+spring.datasource.password = yourpassword
+```
 #### Initiate
 * Run the `main` fuction in `com.cpt202.xunwu.XunWuApplication`
